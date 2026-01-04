@@ -22,11 +22,7 @@ This project improves valuation accuracy by integrating **satellite images** ext
 ### 2. Create and activate virtual environment (Optional)
 ### 3. Install dependencies : pip install numpy pandas matplotlib seaborn requests pillow torch torchvision scikit-learn xgboost
 ### 4. Cached image features (default – recommended)
-- To ensure smooth execution without downloading large satellite images, the following cached image feature files are already included:
-Copy code
-artifacts/
- ├── X_image.npy
- └── X_image_test2.npy
+- To ensure smooth execution without downloading large satellite images, the following cached image feature files are already included in artifacts/
 - These files contain CNN-extracted embeddings from satellite images and allow the notebook to run completely and efficiently.
 
 - No image download is required for normal execution.
@@ -41,10 +37,8 @@ artifacts/
 - Replace the API_KEY constant in the notebook with your own key
 
 - Delete the cached artifacts folder:
-
-Copy code
-artifacts/
-Re-run the notebook
+-  
+- Re-run the notebook
 
 ⚠️ Note:
 Downloading and processing satellite images is very time-consuming and may take a long time depending on API limits and network speed.
