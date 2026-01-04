@@ -11,6 +11,53 @@ Traditional property valuation models rely heavily on numeric and categorical at
 This project improves valuation accuracy by integrating **satellite images** extracted using latitude–longitude coordinates, capturing environmental and spatial features that are otherwise ignored.
 
 ---
+## ▶️ How to Run the Project
+
+- This project is implemented in a **single Jupyter notebook**: complete_source_code.ipynb
+
+- Due to GitHub size constraints, raw satellite image folders (`train_images/`, `test2_images/`) are **not included** in the repository.  
+- Instead, **precomputed (cached) image features** are provided so the notebook runs end-to-end without errors.
+
+### 1. Clone the repository
+### 2. Create and activate virtual environment (Optional)
+### 3. Install dependencies : pip install numpy pandas matplotlib seaborn requests pillow torch torchvision scikit-learn xgboost
+### 4. Cached image features (default – recommended)
+- To ensure smooth execution without downloading large satellite images, the following cached image feature files are already included:
+Copy code
+artifacts/
+ ├── X_image.npy
+ └── X_image_test2.npy
+- These files contain CNN-extracted embeddings from satellite images and allow the notebook to run completely and efficiently.
+
+- No image download is required for normal execution.
+
+### 5. Run the notebook: Open and run all cells in complete_source_code.ipynb
+
+### 6. (Optional) Re-download satellite images from scratch (if needed for evaluation)
+- If the evaluator wishes to verify the image downloading pipeline:
+
+- Obtain a free API key from https://www.maptiler.com
+
+- Replace the API_KEY constant in the notebook with your own key
+
+- Delete the cached artifacts folder:
+
+Copy code
+artifacts/
+Re-run the notebook
+
+⚠️ Note:
+Downloading and processing satellite images is very time-consuming and may take a long time depending on API limits and network speed.
+
+### 7. Expected outputs
+- Trained regression models
+
+- Price predictions saved as CSV files
+
+- Evaluation plots and metrics
+
+
+---
 
 ## Methodology
 
@@ -32,7 +79,7 @@ This project improves valuation accuracy by integrating **satellite images** ext
 
 ## 📂 Dataset Handling
 
-⚠️ **Satellite images are not included in this repository due to size constraints (~1.5 GB).**
+⚠️ **All the Satellite images are not included in this repository due to size constraints (~1.5 GB). Only 10-12 are uploaded in the folder**
 
 - Images are programmatically downloaded using latitude and longitude
 - Each image is saved using the row `id` as filename
@@ -65,11 +112,7 @@ This project improves valuation accuracy by integrating **satellite images** ext
 ## 📌 Notes
 
 - This repository focuses on **reproducibility**
-- Large datasets are intentionally excluded
+- Large datasets (test2_images and train_images folder) are intentionally excluded
 - Suitable for academic projects and ML portfolios
 
 ---
-
-## 📬 Author
-
-Developed as part of an applied machine learning project on **multimodal regression for real-world valuation problems**.
