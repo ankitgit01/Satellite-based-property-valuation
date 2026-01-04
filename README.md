@@ -14,7 +14,7 @@ This project improves valuation accuracy by integrating **satellite images** ext
 ## ▶️ How to Run the Project
 
 - This project is implemented in a **single Jupyter notebook**: complete_source_code.ipynb
-
+- use python 3.12.6 if there is any version mismatch issue.
 - Due to GitHub size constraints, raw satellite image folders (`train_images/`, `test2_images/`) are **not included** in the repository.  
 - Instead, **precomputed (cached) image features** are provided so the notebook runs end-to-end without errors.
 
