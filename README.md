@@ -37,7 +37,7 @@ This project improves valuation accuracy by integrating **satellite images** ext
 - Replace the API_KEY constant in the notebook with your own key
 
 - Delete the cached artifacts folder:
--  
+
 - Re-run the notebook
 
 ⚠️ Note:
@@ -50,24 +50,26 @@ Downloading and processing satellite images is very time-consuming and may take 
 
 - Evaluation plots and metrics
 
-
 ---
 
 ## Methodology
 
 - **Tabular Pipeline**
-  - Missing value imputation
+  - Missing value check
+  - Duplicate id removal
   - Feature scaling and encoding
+  - Feature selection (Dropping the noisy features)
   - Gradient-boosted regression (XGBoost)
 
 - **Image Pipeline**
-  - Satellite image acquisition via map API
-  - CNN-based feature extraction
-  - Image embeddings converted to numeric vectors
+  - Satellite image acquisition via maptiler.com API key
+  - Speeding up image download by parallel download using using two different API keys
+  - CNN-based feature extraction (pretrained ResNet-18)
+  - Image embeddings converted to numeric vectors (X_image.npy) and saved to avoid repeated computation in subsequent runs
 
 - **Multimodal Fusion**
-  - Concatenation of tabular and image features
-  - Final regression model trained on fused representation
+  - Concatenation of tabular and image features before training -> Early fusion architecture
+  - late fusion architecture : separate models were trained for tabular and image features and the final predictions were obtained using a weighted (fine tuned) combination of both model outputs
 
 ---
 
@@ -79,15 +81,15 @@ Downloading and processing satellite images is very time-consuming and may take 
 - Each image is saved using the row `id` as filename
 - A download script is provided to reproduce the dataset locally
 
-
 ---
 
 ## 📊 Model Output
 
-- Evaluated using:
-  - R² Score
-  - Mean Absolute Error (MAE)
+- Evaluation : (Late fusion architecture performed the best)
+  - R² Score : 0.908
+  - Mean Absolute Error (MAE) : 106296
 - Final model trained on full dataset after validation
+- Grad-CAM was used to visualize which regions of satellite images most influenced the model’s predictions.
 
 ---
 
@@ -99,7 +101,7 @@ Downloading and processing satellite images is very time-consuming and may take 
 - XGBoost
 - PyTorch / Torchvision
 - Rasterio
-- Satellite Map API
+- Maptiler API
 
 ---
 
